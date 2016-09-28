@@ -1,5 +1,6 @@
 init:
   - git config --global core.autocrlf true
+  - nuget sources update -Name nuget.org -Source https://api.nuget.org/v3/index.json
 build_script:
   - build.cmd verify
 clone_depth: 1
