@@ -1,6 +1,6 @@
 init:
   - git config --global core.autocrlf true
-  - nuget sources update -Name nuget.org -Source https://www.myget.org/f/aspnetmaster/api/v3/index.json, https://api.nuget.org/v3/index.json
+  - nuget sources update -Name nuget.org -Source https://www.myget.org/f/aspnetmaster/api/v3/index.json, https://api.nuget.org/v3/index.json, https://dotnet.myget.org/F/aspnetcore-tools/api/v3/index.json
 build_script:
   - build.cmd verify
 clone_depth: 1
