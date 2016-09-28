@@ -6,7 +6,7 @@ init:
   - nuget sources Add -Name aspnetci -Source https://www.myget.org/F/aspnetcidev/api/v3/index.json
 build_script:
   - build.cmd verify
-  - dotnet pack .\src\MvcDeviceDetector -c Release -o .\artifacts --version-suffix=$(appveyor_build_version)
+  - pack.cmd verify
 test: off
 artifacts:
 - path: .\artifacts\**\*.nupkg
