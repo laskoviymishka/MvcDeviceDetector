@@ -26,11 +26,12 @@
   "packOptions": {
     "repository": {
       "type": "git",
-      "url": "https://github.com/aspnet/mvc"
+      "url": "https://github.com/laskoviymishka/MvcDeviceDetector"
     },
     "tags": [
       "aspnetcore",
-      "aspnetcoremvc",
+      "device",
+      "detection",
       "mobile"
     ]
   }
