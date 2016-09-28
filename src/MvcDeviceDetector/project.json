@@ -1,0 +1,37 @@
+﻿{
+  "description": "ASP.NET Core MVC features that enable mobile view of applications.",
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "warningsAsErrors": true,
+    "nowarn": [
+      "CS1591"
+    ],
+    "xmlDoc": true
+  },
+  "dependencies": {
+    "Microsoft.AspNetCore.Mvc.Razor": "1.1.0-*",
+    "Microsoft.Extensions.DependencyInjection": "1.1.0-*"
+  },
+  "frameworks": {
+    "net451": { },
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      }
+    }
+  },
+  "packOptions": {
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/aspnet/mvc"
+    },
+    "tags": [
+      "aspnetcore",
+      "aspnetcoremvc",
+      "mobile"
+    ]
+  }
+}
