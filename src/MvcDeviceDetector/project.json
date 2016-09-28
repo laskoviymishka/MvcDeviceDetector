@@ -1,6 +1,6 @@
 ﻿{
   "description": "ASP.NET Core MVC features that enable mobile view of applications.",
-  "version": "1.0.0-*",
+  "version": "0.1.0-*",
   "buildOptions": {
     "warningsAsErrors": true,
     "nowarn": [
