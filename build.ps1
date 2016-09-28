@@ -1,4 +1,16 @@
 $ErrorActionPreference = "Stop"
+function Exec
+{
+	[CmdletBinding()]
+	param(
+		[Parameter(Position=0,Mandatory=1)][scriptblock]$cmd,
+		[Parameter(Position=1,Mandatory=0)][string]$errorMessage = ($msgs.error_bad_command -f $cmd)
+	)
+	& $cmd
+	if ($lastexitcode -ne 0) {
+		throw ("Exec: " + $errorMessage)
+	}
+}
 
 function DownloadWithRetry([string] $url, [string] $downloadLocation, [int] $retries) 
 {
@@ -57,27 +69,14 @@ if (!(Test-Path $buildFolder)) {
     
     New-Item -Path "$buildFolder" -Type directory | Out-Null
     copy-item "$tempFolder\**\build\*" $buildFolder -Recurse
+	
+	exec { & dotnet pack .\src\MvcDeviceDetector -c Release -o .\artifacts --version-suffix=$revision }
 
     # Cleanup
     if (Test-Path $tempFolder) {
         Remove-Item -Recurse -Force $tempFolder
     }
 }
-
-function Exec
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Position=0,Mandatory=1)][scriptblock]$cmd,
-        [Parameter(Position=1,Mandatory=0)][string]$errorMessage = ($msgs.error_bad_command -f $cmd)
-    )
-    & $cmd
-    if ($lastexitcode -ne 0) {
-        throw ("Exec: " + $errorMessage)
-    }
-}
-
-exec { & dotnet pack .\src\MvcDeviceDetector -c Release -o .\artifacts --version-suffix=$revision }
 
 
 &"$buildFile" $args
