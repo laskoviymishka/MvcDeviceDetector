@@ -25,7 +25,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MvcDeviceDetector", "src\Mv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{CA842EDA-A29D-4F75-9AE2-6FA378DD1B73}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MvcSandbox", "sample\MvcSandbox\MvcSandbox.xproj", "{14ED4476-9F24-4776-8417-EA6927F6C9C9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MvcSandbox", "sample\MvcSandbox\MvcSandbox.xproj", "{DE1265E3-F014-4A78-9EF3-AB234310A95B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +37,16 @@ Global
 		{A3444006-2BDE-4EA8-BB7B-5D4F8D589B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3444006-2BDE-4EA8-BB7B-5D4F8D589B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3444006-2BDE-4EA8-BB7B-5D4F8D589B72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14ED4476-9F24-4776-8417-EA6927F6C9C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14ED4476-9F24-4776-8417-EA6927F6C9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14ED4476-9F24-4776-8417-EA6927F6C9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14ED4476-9F24-4776-8417-EA6927F6C9C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1265E3-F014-4A78-9EF3-AB234310A95B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1265E3-F014-4A78-9EF3-AB234310A95B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1265E3-F014-4A78-9EF3-AB234310A95B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1265E3-F014-4A78-9EF3-AB234310A95B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A3444006-2BDE-4EA8-BB7B-5D4F8D589B72} = {B2BF4EC6-D440-4A12-B29C-9C937D6BE90D}
-		{14ED4476-9F24-4776-8417-EA6927F6C9C9} = {CA842EDA-A29D-4F75-9AE2-6FA378DD1B73}
+		{DE1265E3-F014-4A78-9EF3-AB234310A95B} = {CA842EDA-A29D-4F75-9AE2-6FA378DD1B73}
 	EndGlobalSection
 EndGlobal

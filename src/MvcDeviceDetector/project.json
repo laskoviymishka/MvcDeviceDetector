@@ -13,7 +13,8 @@
     "Microsoft.Extensions.DependencyInjection": "1.1.0-*"
   },
   "frameworks": {
-    "net451": { },
+    "net451": {},
+    "netstandard1.6":  {},
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
