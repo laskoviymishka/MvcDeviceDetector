@@ -10,7 +10,7 @@
 	{
 		private readonly DeviceType _deviceType;
 
-		public LiteDevice(DeviceType deviceType, string code = "empty")
+		public LiteDevice(DeviceType deviceType, string code = "")
 		{
 			_deviceType = deviceType;
 			DeviceCode = code;
