@@ -3,7 +3,11 @@
 Adaptive web site should adjust his behaivior according to current device. Adaptive site should also have preference mechanism, with ability to switch between preferences, not matter for device (like github for example).
 This could help a lot of developers to build rich and adaptive websites.
 
-Firstly we need to include `MvcDeviceDetector` package via `Install-Package MvcDeviceDetector -Pre`.
+Firstly we need to include `MvcDeviceDetector` package via .
+```
+Install-Package MvcDeviceDetector -Pre
+```
+
 Than we should register required service and specify some options:
 You could just add device detector:
 ```
