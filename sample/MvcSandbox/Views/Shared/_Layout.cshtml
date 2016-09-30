@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject MvcDeviceDetector.Abstractions.IDeviceAccessor deviceAccessor
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
@@ -42,6 +43,9 @@
 <br/>
 <br/>
 <div class="container body-content">
+	<h1>Device Is @deviceAccessor.Device</h1>
+	<br/>
+	<h1>Preference Is @deviceAccessor.Preference</h1>
 	@RenderBody()
 	<hr/>
 	<footer>
