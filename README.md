@@ -39,8 +39,8 @@ Mechanism provide following extensibility point:
 
 1. Allow developer to change device codes, and aliases
 2. Allow developer to use own device implementation, by adding specific device factory
-3. Allow developer to introduce new device types expect regular table and mobile
-4. Allow developer to switch between Switcher mechanism (by default, it should store preference in cookies, but also should be have ability to use URL switcher)
+3. Allow developer to introduce new device types expect regular tablet and mobile
+4. Allow developer to switch between `Switcher` mechanism (by default, it should store preference in cookies, but also should be have ability to use URL switcher or whatever machanism that you could implement)
 5. Allow developer to change URL generation rules
 
 For any questions and bug please file an issue.
