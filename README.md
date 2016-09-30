@@ -13,6 +13,16 @@ You could just add device detector:
 ```
 services.AddDeviceDetector();
 ```
+or you may implement you own `IDeviceFactory` for device detection.
+And optionally you may add device switcher (for runtime device changing).
+```
+services.AddDeviceSwitcher<CookieSwitcher>();
+```
+or
+```
+services.AddDeviceSwitcher<UrlSwitcher>();
+```
+or implement your own device switcher by implementing interface `IDeviceSwitcher`
 
 After this configuration new ViewLocationExpanders will be applied and start to search device specific views from prefixes or subfolders. Device would be detected from user agent according to lite device detection mechanism (simillar to _http://projects.spring.io/spring-mobile/_).
 
