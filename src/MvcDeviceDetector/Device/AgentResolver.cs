@@ -66,8 +66,7 @@
 			}
 
 			// UserAgent keyword detection of Tablet devices
-			if (agent != null && TabletUserAgentKeywords.Any(keyword => agent.Contains(keyword)) 
-                             && (!agent.Contains("mobile") || agent.Contains("ipad")))
+			if (agent != null && TabletUserAgentKeywords.Any(keyword => agent.Contains(keyword) && !agent.Contains("mobile") || (agent != null && agent.Contains("ipad")))
 			{
 				return _deviceFactory.Tablet();
 			}
