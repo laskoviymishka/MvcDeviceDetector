@@ -10,9 +10,6 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCompanyAttribute("Andrei Tserakhau")]
-[assembly: AssemblyConfigurationAttribute("Debug")]
-[assembly: AssemblyProductAttribute("MvcDeviceDetector")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
