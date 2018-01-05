@@ -1,50 +1,46 @@
-﻿namespace MvcDeviceDetector.Preference
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.Extensions.Options;
+using MvcDeviceDetector.Abstractions;
+
+namespace MvcDeviceDetector.Preference
 {
-	#region usings
+    public class UrlSwitcher : IDeviceSwitcher
+    {
+        private readonly IDeviceFactory _deviceFactory;
+        private readonly IDeviceRedirector _deviceRedirector;
+        private readonly IOptions<DeviceOptions> _options;
 
-	using Abstractions;
-	using Microsoft.AspNetCore.Http;
-	using Microsoft.AspNetCore.Http.Extensions;
-	using Microsoft.Extensions.Options;
+        public UrlSwitcher(IOptions<DeviceOptions> options, IDeviceFactory deviceFactory, IDeviceRedirector deviceRedirector)
+        {
+            _options = options;
+            _deviceFactory = deviceFactory;
+            _deviceRedirector = deviceRedirector;
+        }
 
-	#endregion
+        public int Priority => 2;
 
-	public class UrlSwitcher : IDeviceSwitcher
-	{
-		private readonly IDeviceFactory _deviceFactory;
-		private readonly IDeviceRedirector _deviceRedirector;
-		private readonly IOptions<DeviceOptions> _options;
+        public IDevice LoadPreference(HttpContext context)
+        {
+            var url = context.Request.GetDisplayUrl();
 
-		public UrlSwitcher(IOptions<DeviceOptions> options, IDeviceFactory deviceFactory, IDeviceRedirector deviceRedirector)
-		{
-			_options = options;
-			_deviceFactory = deviceFactory;
-			_deviceRedirector = deviceRedirector;
-		}
+            if (url.Contains($"//{_options.Value.MobileCode}."))
+            {
+                return _deviceFactory.Mobile();
+            }
 
-		public int Priority => 2;
+            if (url.Contains($"//{_options.Value.TabletCode}."))
+            {
+                return _deviceFactory.Tablet();
+            }
 
-		public IDevice LoadPreference(HttpContext context)
-		{
-			var url = context.Request.GetDisplayUrl();
+            return null;
+        }
 
-			if (url.Contains($"//{_options.Value.MobileCode}."))
-			{
-				return _deviceFactory.Mobile();
-			}
+        public void StoreDevice(HttpContext context, IDevice device)
+            => _deviceRedirector.RedirectToDevice(context, device.DeviceCode);
 
-			if (url.Contains($"//{_options.Value.TabletCode}."))
-			{
-				return _deviceFactory.Tablet();
-			}
-
-			return null;
-		}
-
-		public void StoreDevice(HttpContext context, IDevice device)
-			=> _deviceRedirector.RedirectToDevice(context, device.DeviceCode);
-
-		public void ResetStore(HttpContext context)
-			=> _deviceRedirector.RedirectToDevice(context);
-	}
+        public void ResetStore(HttpContext context)
+            => _deviceRedirector.RedirectToDevice(context);
+    }
 }

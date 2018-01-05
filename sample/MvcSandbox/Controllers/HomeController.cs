@@ -1,24 +1,24 @@
 namespace MvcSandbox.Controllers
 {
-	#region usings
+    #region usings
 
-	using Microsoft.AspNetCore.Mvc;
-	using MvcDeviceDetector.Abstractions;
+    using Microsoft.AspNetCore.Mvc;
+    using MvcDeviceDetector.Abstractions;
 
-	#endregion
+    #endregion
 
-	public class HomeController : Controller
-	{
-		private readonly IDeviceAccessor _device;
+    public class HomeController : Controller
+    {
+        private readonly IDeviceAccessor _device;
 
-		public HomeController(IDeviceAccessor device)
-		{
-			_device = device;
-		}
+        public HomeController(IDeviceAccessor device)
+        {
+            _device = device;
+        }
 
-		public IActionResult Index()
-		{
-			return View();
-		}
-	}
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
 }

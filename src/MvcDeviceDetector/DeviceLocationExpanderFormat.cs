@@ -1,8 +1,8 @@
 namespace MvcDeviceDetector
 {
-	public enum DeviceLocationExpanderFormat
-	{
-		Suffix,
-		SubFolder
-	}
+    public enum DeviceLocationExpanderFormat
+    {
+        Suffix,
+        SubFolder
+    }
 }

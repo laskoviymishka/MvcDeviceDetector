@@ -1,70 +1,67 @@
-﻿namespace MvcDeviceDetector.Preference
+﻿using Microsoft.AspNetCore.Http;
+using MvcDeviceDetector.Abstractions;
+
+namespace MvcDeviceDetector.Preference
 {
-	#region usings
 
-	using Abstractions;
-	using Microsoft.AspNetCore.Http;
+    public class CookieSwitcher : IDeviceSwitcher
+    {
+        private const string DevicePreferenceCookieKey = ".MvcDeviceDetector.Preference";
+        private const string MobilePreferenceKey = "Mobile";
+        private const string TabletPreferenceKey = "Tablet";
+        private const string NormalPreferenceKey = "Normal";
 
-	#endregion
+        private readonly IDeviceFactory _deviceFactory;
+        private readonly IDeviceRedirector _deviceRedirector;
 
-	public class CookieSwitcher : IDeviceSwitcher
-	{
-		private const string DevicePreferenceCookieKey = ".MvcDeviceDetector.Preference";
-		private const string MobilePreferenceKey = "Mobile";
-		private const string TabletPreferenceKey = "Tablet";
-		private const string NormalPreferenceKey = "Normal";
+        public CookieSwitcher(IDeviceFactory deviceFactory, IDeviceRedirector deviceRedirector)
+        {
+            _deviceFactory = deviceFactory;
+            _deviceRedirector = deviceRedirector;
+        }
 
-		private readonly IDeviceFactory _deviceFactory;
-		private readonly IDeviceRedirector _deviceRedirector;
+        public int Priority => 1;
 
-		public CookieSwitcher(IDeviceFactory deviceFactory, IDeviceRedirector deviceRedirector)
-		{
-			_deviceFactory = deviceFactory;
-			_deviceRedirector = deviceRedirector;
-		}
+        public IDevice LoadPreference(HttpContext context)
+        {
+            if (!context.Request.Cookies.ContainsKey(DevicePreferenceCookieKey)) return null;
 
-		public int Priority => 1;
+            switch (context.Request.Cookies[DevicePreferenceCookieKey])
+            {
+                case MobilePreferenceKey:
+                    return _deviceFactory.Mobile();
+                case TabletPreferenceKey:
+                    return _deviceFactory.Tablet();
+                case NormalPreferenceKey:
+                    return _deviceFactory.Normal();
+            }
 
-		public IDevice LoadPreference(HttpContext context)
-		{
-			if (!context.Request.Cookies.ContainsKey(DevicePreferenceCookieKey)) return null;
+            return null;
+        }
 
-			switch (context.Request.Cookies[DevicePreferenceCookieKey])
-			{
-				case MobilePreferenceKey:
-					return _deviceFactory.Mobile();
-				case TabletPreferenceKey:
-					return _deviceFactory.Tablet();
-				case NormalPreferenceKey:
-					return _deviceFactory.Normal();
-			}
+        public void StoreDevice(HttpContext context, IDevice device)
+        {
+            if (device.IsMobile)
+            {
+                context.Response.Cookies.Append(DevicePreferenceCookieKey, MobilePreferenceKey);
+            }
+            else if (device.IsTablet)
+            {
+                context.Response.Cookies.Append(DevicePreferenceCookieKey, TabletPreferenceKey);
+            }
+            else if (device.IsNormal)
+            {
+                context.Response.Cookies.Append(DevicePreferenceCookieKey, NormalPreferenceKey);
+            }
 
-			return null;
-		}
+            _deviceRedirector.RedirectToDevice(context);
+        }
 
-		public void StoreDevice(HttpContext context, IDevice device)
-		{
-			if (device.IsMobile)
-			{
-				context.Response.Cookies.Append(DevicePreferenceCookieKey, MobilePreferenceKey);
-			}
-			else if (device.IsTablet)
-			{
-				context.Response.Cookies.Append(DevicePreferenceCookieKey, TabletPreferenceKey);
-			}
-			else if (device.IsNormal)
-			{
-				context.Response.Cookies.Append(DevicePreferenceCookieKey, NormalPreferenceKey);
-			}
+        public void ResetStore(HttpContext context)
+        {
+            context.Response.Cookies.Delete(DevicePreferenceCookieKey);
 
-			_deviceRedirector.RedirectToDevice(context);
-		}
-
-		public void ResetStore(HttpContext context)
-		{
-			context.Response.Cookies.Delete(DevicePreferenceCookieKey);
-
-			_deviceRedirector.RedirectToDevice(context);
-		}
-	}
+            _deviceRedirector.RedirectToDevice(context);
+        }
+    }
 }

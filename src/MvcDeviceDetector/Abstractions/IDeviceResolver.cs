@@ -1,13 +1,10 @@
-﻿namespace MvcDeviceDetector.Abstractions
+﻿using Microsoft.AspNetCore.Http;
+
+namespace MvcDeviceDetector.Abstractions
 {
-	#region usings
 
-	using Microsoft.AspNetCore.Http;
-
-	#endregion
-
-	public interface IDeviceResolver
-	{
-		IDevice ResolveDevice(HttpContext context);
-	}
+    public interface IDeviceResolver
+    {
+        IDevice ResolveDevice(HttpContext context);
+    }
 }
