@@ -16,4 +16,4 @@ if(Test-Path .\artifacts) { Remove-Item .\artifacts -Force -Recurse }
 $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BUILD_NUMBER -ne $NULL];
 $revision = "beta-{0:D4}" -f [convert]::ToInt32($revision, 10)
 
-exec { & dotnet pack .t -c Release -o .\artifacts --version-suffix=$revision }  
+exec { & dotnet pack . -c Release -o .\artifacts --version-suffix=$revision }  
