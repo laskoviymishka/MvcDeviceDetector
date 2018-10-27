@@ -19,5 +19,6 @@ deploy:
     secure: 98ef5401-34d4-4795-9e72-d657e335c3c8
   on:
     branch: master
-    appveyor_repo_tag: true
+
+appveyor_repo_tag: true
 clone_depth: 1
