@@ -17,7 +17,7 @@ deploy:
   appveyor_repo_tag: true
   name: production
   api_key:
-    secure: 98ef5401-34d4-4795-9e72-d657e335c3c8
+    secure: thrcdtvd7t9fkbt11q4db5my
   on:
     branch: master
 clone_depth: 1
