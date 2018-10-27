@@ -1,3 +1,5 @@
+version: '{build}'
+image: Visual Studio 2017
 init:
   - git config --global core.autocrlf true
   - nuget sources update -Name nuget.org -Source https://api.nuget.org/v3/index.json
@@ -5,8 +7,7 @@ init:
   - nuget sources Add -Name myget -Source https://dotnet.myget.org/F/aspnetcore-tools/api/v3/index.json
   - nuget sources Add -Name aspnetci -Source https://www.myget.org/F/aspnetcidev/api/v3/index.json
 build_script:
-  - build.cmd verify
-  - pack.cmd verify
+- ps: .\Build.ps1
 test: off
 artifacts:
 - path: .\artifacts\**\*.nupkg
